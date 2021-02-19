@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * 
+ * @author Ravi Ramanathan
+ *
+ */
 public class Game {
 	private Card[] deck;
 	private ArrayList<Player> players;

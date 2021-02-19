@@ -2,6 +2,12 @@ package poker;
 
 import java.util.Arrays;
 
+/**
+ * 
+ * @author Ravi Ramanathan
+ *
+ */
+
 public class Player {
 
 	public final String name;
@@ -59,8 +65,8 @@ public class Player {
 
 	public Card[] getHand() throws Exception {
 		Card[] handCopy = new Card[2];
-		handCopy[0] = this.hand[0].copy();
-		handCopy[1] = this.hand[1].copy();
+		handCopy[0] = new Card(this.hand[0]);
+		handCopy[1] = new Card(this.hand[1]);
 		return handCopy;
 	}
 
