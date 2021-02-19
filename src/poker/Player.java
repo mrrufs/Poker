@@ -17,6 +17,12 @@ public class Player {
 	private boolean allIn;
 	private int dealt = 0;
 
+	/***
+	 * Player constructor
+	 * 
+	 * @param name
+	 * @param money
+	 */
 	public Player(String name, int money) {
 		this.name = name;
 		this.balance = money;
@@ -25,7 +31,14 @@ public class Player {
 		this.allIn = false;
 	}
 
-	public boolean deal(Card card) {
+	/***
+	 * Deal a player a new card from the deck. Package protected to avoid being
+	 * dealt a card externally.
+	 * 
+	 * @param card Card from top of deck
+	 * @return true if dealt a card, false if player already had a full hand
+	 */
+	boolean deal(Card card) {
 		if (dealt == 2) {
 			return false;
 		}
@@ -34,11 +47,21 @@ public class Player {
 		return true;
 	}
 
-	public void fold() {
+	/***
+	 * have Player fold
+	 */
+	void fold() {
 		this.folded = true;
 	}
 
-	public int bet(int value) {
+	/**
+	 * Increase player's bet in the round.
+	 * 
+	 * @param value amount to be bet
+	 * @return the amount actually bet; this could be different if the player does
+	 *         not have enough in their balance, in which case they will be all in
+	 */
+	int bet(int value) {
 		if (value < balance) {
 			this.balance -= value;
 			return value;
@@ -50,26 +73,47 @@ public class Player {
 		}
 	}
 
+	/***
+	 * getter for the balance
+	 * @return the Player's balance
+	 */
 	public int getMoney() {
 		return this.balance;
 	}
 
+	/***
+	 *  
+	 * @return whether the player has folded
+	 */
 	public boolean folded() {
 		return this.folded;
 	}
 
-	public int collectWinnings(int winnings) {
+	/***
+	 * Gives the Player the winnings from the round. 
+	 * @param winnings amount won in this round
+	 * @return the Player's new balance after collecting winnings
+	 */
+	int collectWinnings(int winnings) {
 		this.balance += winnings;
 		return this.balance;
 	}
 
-	public Card[] getHand() throws Exception {
+	/***
+	 * 
+	 * @return a copy of the Player's hand
+	 */
+	public Card[] getHand() {
 		Card[] handCopy = new Card[2];
 		handCopy[0] = new Card(this.hand[0]);
 		handCopy[1] = new Card(this.hand[1]);
 		return handCopy;
 	}
 
+	/***
+	 * 
+	 * @return whether Player is all in
+	 */
 	public boolean isAllIn() {
 		return this.allIn;
 	}

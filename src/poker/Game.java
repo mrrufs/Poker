@@ -11,15 +11,26 @@ import java.util.Random;
  *
  */
 public class Game {
+	// each game object has its own deck and its own pot
 	private Card[] deck;
-	private ArrayList<Player> players;
-	private HashMap<Player, Integer> playerBets;
-	private final int BIG_BLIND;
-	private final int LITTLE_BLIND;
-	private final int round;
-	private int MIN_BET;
 	private int pot = 0;
 
+	private ArrayList<Player> players;
+	private HashMap<Player, Integer> playerBets;
+	private final int round;
+	private final int BIG_BLIND;
+	private final int LITTLE_BLIND;
+	private int MIN_BET;
+
+	/***
+	 * Constructor to initialize Game object
+	 * 
+	 * @param players      List of Player objects representing current players in
+	 *                     game
+	 * @param round        Integer of the round of poker
+	 * @param big_blind    Value of big blind's ante
+	 * @param little_blind Value of little blind's ante
+	 */
 	public Game(ArrayList<Player> players, int round, int big_blind, int little_blind) {
 		this.players = players;
 
@@ -48,10 +59,20 @@ public class Game {
 		this.LITTLE_BLIND = little_blind;
 	}
 
+	/**
+	 * Constructor to initialize Game object with default values of 2 and 1
+	 * respectively for big and little blind antes
+	 * 
+	 * @param players List of Player objects for player in this round of poker
+	 * @param round   Integer representing the round of poker
+	 */
 	public Game(ArrayList<Player> players, int round) {
 		this(players, round, 2, 1);
 	}
 
+	/***
+	 * Start playing the round of poker
+	 */
 	public void run() {
 		System.out.println("----- Round " + round + " -----");
 		System.out.println(Arrays.toString(this.deck));
